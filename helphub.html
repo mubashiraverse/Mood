@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>MoodCheck 🌱</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            padding: 50px;
+            background: #f0f8ff;
+        }
+
+        h1 {
+            color: #2e8b57;
+        }
+
+        select,
+        button {
+            font-size: 16px;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #555;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>MoodCheck 🌱</h1>
+    <p>How are you feeling right now?</p>
+    <select id="moodSelect">
+        <option value="">--Select your mood--</option>
+        <option value="happy">Happy 😊</option>
+        <option value="sad">Sad 😔</option>
+        <option value="anxious">Anxious 😟</option>
+        <option value="stressed">Stressed 😣</option>
+        <option value="bored">Bored 😐</option>
+        <option value="tired">Tired 😴</option>
+    </select>
+    <br>
+    <button onclick="getMoodTip()">Get Tips</button>
+
+    <h3>Suggestions:</h3>
+    <p id="result"></p>
+
+    <script>
+        const moodData = {
+            happy: {
+                quotes: [
+                    "Keep shining, your positivity is contagious!",
+                    "Happiness grows when shared."
+                ],
+                actions: [
+                    "Share your joy with a friend today.",
+                    "Write down 3 things that made you smile."
+                ],
+                duas: [
+                    "Say Alhamdulillah for the blessings.",
+                    "Recite Surah Al-Falaq for gratitude."
+                ]
+            },
+            sad: {
+                quotes: [
+                    "This feeling will pass.",
+                    "Even rainy days help flowers grow."
+                ],
+                actions: [
+                    "Call or message a friend you trust.",
+                    "Write your thoughts in a journal for 5 minutes."
+                ],
+                duas: [
+                    "Recite Surah Al-Inshirah for comfort.",
+                    "Say the dua for patience in difficulty."
+                ]
+            },
+            anxious: {
+                quotes: [
+                    "Breathe in calmness, breathe out tension.",
+                    "Focus on what you can control, let go of the rest."
+                ],
+                actions: [
+                    "Take 5 deep breaths slowly.",
+                    "Do a short 2-minute stretch or walk."
+                ],
+                duas: [
+                    "Recite Ayat al-Kursi for peace of mind.",
+                    "Say the morning dua for courage and calm."
+                ]
+            },
+            stressed: {
+                quotes: [
+                    "One small step at a time.",
+                    "Stress is temporary, your effort is permanent."
+                ],
+                actions: [
+                    "Break your tasks into 5-minute chunks.",
+                    "Take a 2-minute break, close your eyes and breathe."
+                ],
+                duas: [
+                    "Recite Surah Al-Duha for reassurance.",
+                    "Say the dua for relief from stress."
+                ]
+            },
+            bored: {
+                quotes: [
+                    "Every moment is an opportunity to learn.",
+                    "Try something new, even small changes spark creativity."
+                ],
+                actions: [
+                    "Pick a short creative task or mini-challenge.",
+                    "Go for a quick walk or stretch."
+                ],
+                duas: [
+                    "Recite morning dua for guidance.",
+                    "Say Bismillah before trying something new."
+                ]
+            },
+            tired: {
+                quotes: [
+                    "Rest is productive too.",
+                    "Recharge now to perform better later."
+                ],
+                actions: [
+                    "Take a short power nap or rest your eyes for 10 minutes.",
+                    "Drink water and stretch lightly."
+                ],
+                duas: [
+                    "Recite Ayat al-Kursi for protection and energy.",
+                    "Say the dua for morning strength and focus."
+                ]
+            }
+        };
+
+        function getMoodTip() {
+            const mood = document.getElementById("moodSelect").value;
+            if (!mood) {
+                document.getElementById("result").innerText = "Please select your mood!";
+                return;
+            }
+
+            const category = moodData[mood];
+            const quote = category.quotes[Math.floor(Math.random() * category.quotes.length)];
+            const action = category.actions[Math.floor(Math.random() * category.actions.length)];
+            const dua = category.duas[Math.floor(Math.random() * category.duas.length)];
+
+            document.getElementById("result").innerText = `Quote: ${quote}\nAction: ${action}\nSpiritual guidance: ${dua}`;
+        }
+    </script>
+</body>
+
+</html>
